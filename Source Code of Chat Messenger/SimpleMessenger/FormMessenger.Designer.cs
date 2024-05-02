@@ -151,7 +151,7 @@
             // 
             this.oFFToolStripMenuItem.Name = "oFFToolStripMenuItem";
             resources.ApplyResources(this.oFFToolStripMenuItem, "oFFToolStripMenuItem");
-            this.oFFToolStripMenuItem.Click += new System.EventHandler(this.oFFToolStripMenuItem_Click);
+            this.oFFToolStripMenuItem.Click += new System.EventHandler(this.OFFToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -165,13 +165,13 @@
             // 
             this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
             resources.ApplyResources(this.manualToolStripMenuItem, "manualToolStripMenuItem");
-            this.manualToolStripMenuItem.Click += new System.EventHandler(this.manualToolStripMenuItem_Click);
+            this.manualToolStripMenuItem.Click += new System.EventHandler(this.ManualToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // richTxtNewsFeed
             // 

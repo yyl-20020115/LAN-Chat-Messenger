@@ -25,8 +25,8 @@ public partial class FormMessenger : Form
             if (listClients.Items.Contains(info) == false)
             {
                 listClients.Items.Add(info);
-                Program.App.Client.numberoOfMessage[info.ClientID]= 0;
-                Program.App.Client.numberoOfMessageString[info.ClientID] ="";
+                Program.App.Client.NumberoOfMessage[info.ClientID]= 0;
+                Program.App.Client.NumberoOfMessageString[info.ClientID] ="";
                 FormChat newForm = new FormChat(info);
                 Program.App.Forms.Add(info.ClientID, newForm);
                 newForm.Hide();
@@ -136,8 +136,8 @@ public partial class FormMessenger : Form
                     ClientInfo tempinfo = new();
                     tempinfo = Program.App.Client.ClientDic[remoteID];
                     int x = listClients.Items.IndexOf(tempinfo);
-                    Program.App.Client.numberoOfMessage[tempinfo.ClientID]++;
-                    Program.App.Client.numberoOfMessageString[tempinfo.ClientID] = "(" + Program.App.Client.numberoOfMessage[tempinfo.ClientID].ToString() + ")";
+                    Program.App.Client.NumberoOfMessage[tempinfo.ClientID]++;
+                    Program.App.Client.NumberoOfMessageString[tempinfo.ClientID] = "(" + Program.App.Client.NumberoOfMessage[tempinfo.ClientID].ToString() + ")";
                     listClients.Items.RemoveAt(x);
                     listClients.Items.Add(tempinfo);
                     listClients.BackColor = Color.Pink;
@@ -164,13 +164,13 @@ public partial class FormMessenger : Form
             var c = (ClientInfo)listClients.SelectedItem;
             if (c == null) return;
             ShowChatWindow(c);
-            if (Program.App.Client.numberoOfMessageString[c.ClientID] != "")
+            if (Program.App.Client.NumberoOfMessageString[c.ClientID] != "")
             {
                 listClients.ClearSelected();
                 listClients.BackColor = Color.MediumOrchid;
                 int x = listClients.Items.IndexOf(c);
-                Program.App.Client.numberoOfMessage[c.ClientID] = 0;
-                Program.App.Client.numberoOfMessageString[c.ClientID] = "";
+                Program.App.Client.NumberoOfMessage[c.ClientID] = 0;
+                Program.App.Client.NumberoOfMessageString[c.ClientID] = "";
                 listClients.Items.RemoveAt(x);
                 listClients.Items.Add(c);
             }
@@ -229,7 +229,7 @@ public partial class FormMessenger : Form
     {
         if (listClients.InvokeRequired)
         {
-            listClients.BeginInvoke(new ServerList(GetList), new object[1] { l });
+            listClients.BeginInvoke(new ServerList(GetList), [l]);
             return;
         }
         else
@@ -239,8 +239,8 @@ public partial class FormMessenger : Form
                 if (listClients.Items.Contains(info)==false)
                 {
                     listClients.Items.Add(info);
-                    Program.App.Client.numberoOfMessage[info.ClientID] = 0;
-                    Program.App.Client.numberoOfMessageString[info.ClientID] = "";
+                    Program.App.Client.NumberoOfMessage[info.ClientID] = 0;
+                    Program.App.Client.NumberoOfMessageString[info.ClientID] = "";
                     FormChat newForm = new(info);
                     Program.App.Forms.Add(info.ClientID, newForm);
                     newForm.Hide();
@@ -264,7 +264,7 @@ public partial class FormMessenger : Form
     {
         if (listClients.InvokeRequired)
         {
-            listClients.Invoke(new ServerLeaved(RemoveFromList), new object[1] { info });
+            listClients.Invoke(new ServerLeaved(RemoveFromList), [info]);
         }
         else
         {
@@ -443,12 +443,12 @@ public partial class FormMessenger : Form
             if (Program.App.Client.ClientDic.ContainsKey(senderID))
             {
                 Program.App.Forms[senderID].GetBuzz(senderID);
-                if (Program.App.Client.numberoOfMessageString[senderID] != "")
+                if (Program.App.Client.NumberoOfMessageString[senderID] != "")
                 {
                     listClients.BackColor = Color.MediumOrchid;
                     int x = listClients.Items.IndexOf(Program.App.Client.ClientDic[senderID]);
-                    Program.App.Client.numberoOfMessage[senderID] = 0;
-                    Program.App.Client.numberoOfMessageString[senderID] = "";
+                    Program.App.Client.NumberoOfMessage[senderID] = 0;
+                    Program.App.Client.NumberoOfMessageString[senderID] = "";
                     listClients.Items.RemoveAt(x);
                     listClients.Items.Add(Program.App.Client.ClientDic[senderID]);
                 }
@@ -498,7 +498,7 @@ public partial class FormMessenger : Form
    /// <param name="e"></param>
     private void oNToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        Program.App.Client.messgSound = true;
+        Program.App.Client.MessageSound = true;
     }
 
 
@@ -509,18 +509,18 @@ public partial class FormMessenger : Form
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void oFFToolStripMenuItem_Click(object sender, EventArgs e)
+    private void OFFToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        Program.App.Client.messgSound = false;
+        Program.App.Client.MessageSound = false;
     }
 
-    private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+    private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        AboutBox about = new AboutBox();
+        using var about = new AboutBox();
         about.ShowDialog();
     }
 
-    private void manualToolStripMenuItem_Click(object sender, EventArgs e)
+    private void ManualToolStripMenuItem_Click(object sender, EventArgs e)
     {
         if (File.Exists("Project__Chat_Messenger__Report.pdf"))
             Process.Start("Project__Chat_Messenger__Report.pdf");

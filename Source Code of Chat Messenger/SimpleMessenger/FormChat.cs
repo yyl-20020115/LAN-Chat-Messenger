@@ -133,7 +133,7 @@ public partial class FormChat : Form
             }
             m.LineNumb = lineNumber;
             m.From = Program.App.Info.ClientID;
-            Program.App.Client.Listener.Send(Program.App.Client.serverIP, 12345, m.Serialize());
+            Program.App.Client.Listener.Send(Program.App.Client.ServerIP, 12345, m.Serialize());
             TagUserControl myUsercon = new TagUserControl(Program.App.Info, SendMsgBox.Text, lineNumber);
             flowLayoutPanel1.Controls.Add(myUsercon);
             flowLayoutPanel1.VerticalScroll.Value = flowLayoutPanel1.VerticalScroll.Maximum;
@@ -162,7 +162,7 @@ public partial class FormChat : Form
             //this.Show();
             if (this.Visible == true)
                 WindowState = FormWindowState.Normal;
-            if(Program.App.Client.messgSound==true)
+            if(Program.App.Client.MessageSound==true)
             this.MessageSound.Play();
             TagUserControl myUsercon = new TagUserControl(info,m,line);
             flowLayoutPanel1.Controls.Add(myUsercon);
@@ -245,7 +245,7 @@ public partial class FormChat : Form
             Info = client,
             From = Program.App.Info.ClientID
         };
-        Program.App.Client.Listener.Send(Program.App.Client.serverIP, 12345, m.Serialize());
+        Program.App.Client.Listener.Send(Program.App.Client.ServerIP, 12345, m.Serialize());
     }
 
 }

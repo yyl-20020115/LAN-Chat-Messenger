@@ -19,5 +19,5 @@ public class ClientInfo
 
     public override int GetHashCode() => base.GetHashCode();
 
-    public override string ToString() => (Name + Program.App.Client.numberoOfMessageString[ClientID]);
+    public override string ToString() => (Name + Program.App.Client.NumberoOfMessageString[ClientID]);
 }

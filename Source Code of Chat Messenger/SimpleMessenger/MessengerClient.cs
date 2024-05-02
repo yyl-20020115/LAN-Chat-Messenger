@@ -34,16 +34,16 @@ public class MessengerClient
     public event SERVER_DISCONNECTED_BY_SERVER DisconnectByServer;
     
 
-    private Dictionary<int, ClientInfo> clientDic;
-    public int[] numberoOfMessage = new int[1000];
-    public string[] numberoOfMessageString = new string[1000];
-    public bool messgSound = true;
-    private ClientInfo me;
-    private SocketListener listener;
-    public string serverIP;
-    public string ownIP;
-    readonly Timer timer = new(3000);
-    readonly Timer timerForAlive = new(3000);
+    private Dictionary<int, ClientInfo> _ClientDic;
+    public int[] NumberoOfMessage = new int[1000];
+    public string[] NumberoOfMessageString = new string[1000];
+    public bool MessageSound = true;
+    private ClientInfo Me;
+    private SocketListener _Listener;
+    public string ServerIP;
+    public string SelfIP;
+    readonly Timer Timer = new(3000);
+    readonly Timer TimerForAlive = new(3000);
 
 
 
@@ -51,13 +51,13 @@ public class MessengerClient
     /// <summary>
     /// Sharing Dictionary instance with other class
     /// </summary>
-    public Dictionary<int, ClientInfo> ClientDic => clientDic;
+    public Dictionary<int, ClientInfo> ClientDic => _ClientDic;
 
 
     /// <summary>
     /// Shareing SocketListener instance with other class.
     /// </summary>
-    public SocketListener Listener => listener;
+    public SocketListener Listener => _Listener;
 
 
     /// <summary>
@@ -76,28 +76,28 @@ public class MessengerClient
     /// <param name="name"></param>
     public void Start(string serverIP,string name)
     {
-        this.serverIP = serverIP;
-        me = new ClientInfo
+        this.ServerIP = serverIP;
+        Me = new ClientInfo
         {
             IP = Program.OwnIP,
             Name = name
         };
 
-        clientDic = [];
-        listener = new SocketListener(0, GotClientMessage);
-        Program.App.Info.ListenPort = listener.Port;
-        me.ListenPort = listener.Port;
+        _ClientDic = [];
+        _Listener = new SocketListener(0, GotClientMessage);
+        Program.App.Info.ListenPort = Listener.Port;
+        Me.ListenPort = Listener.Port;
         // Sending joining message to server 
         ClientMessage msg = new()
         {
-            Info = me,
+            Info = Me,
             Type = (int)ClientMsgType.Join
         };
-        listener.Send(serverIP,12345,msg.Serialize());
-        timer.Elapsed += new ElapsedEventHandler(Timer_Elapsed);
-        timer.Start();
-        timerForAlive.Elapsed += new ElapsedEventHandler(TimerForAlive_Elapsed);
-        timerForAlive.Start();
+        Listener.Send(serverIP,12345,msg.Serialize());
+        Timer.Elapsed += new ElapsedEventHandler(Timer_Elapsed);
+        Timer.Start();
+        TimerForAlive.Elapsed += new ElapsedEventHandler(TimerForAlive_Elapsed);
+        TimerForAlive.Start();
     }
 
 
@@ -110,13 +110,13 @@ public class MessengerClient
     /// <param name="e"></param>
     void TimerForAlive_Elapsed(object sender, ElapsedEventArgs e)
     {
-        timerForAlive.Stop();
+        TimerForAlive.Stop();
         //throw new NotImplementedException();
         ClientMessage m = new ClientMessage();
         m.Type = (int)ClientMsgType.Alive;
         m.Info = Program.App.Info;
-        listener.Send(Program.App.ServerIP,12345,m.Serialize());
-        timerForAlive.Start();
+        Listener.Send(Program.App.ServerIP,12345,m.Serialize());
+        TimerForAlive.Start();
     }
 
 
@@ -128,8 +128,8 @@ public class MessengerClient
     /// <param name="e"></param>
     void Timer_Elapsed(object sender, ElapsedEventArgs e)
     {
-        ConnectionStatus(serverIP, false);
-        timer.Stop();
+        ConnectionStatus(ServerIP, false);
+        Timer.Stop();
     }
 
 
@@ -150,15 +150,15 @@ public class MessengerClient
 
             case ClientMsgType.ClientList:
 
-                timer.Stop();
+                Timer.Stop();
                 Program.App.Info.ClientID = msg.Info.ClientID;        
                 foreach (ClientInfo info in msg.CurrentClients)
                 {
-                    if (clientDic.ContainsKey(info.ClientID) == false)
-                        clientDic.Add(info.ClientID, info);
+                    if (ClientDic.ContainsKey(info.ClientID) == false)
+                        ClientDic.Add(info.ClientID, info);
                 }
                 if (ConnectionStatus!=null)
-                ConnectionStatus(serverIP, true);
+                ConnectionStatus(ServerIP, true);
                 break;
 
 
@@ -168,8 +168,8 @@ public class MessengerClient
                 msg.CurrentClients.Add(msg.Info);
                 foreach (ClientInfo info in msg.CurrentClients)
                 {
-                    if (clientDic.ContainsKey(info.ClientID) == false)
-                        clientDic.Add(info.ClientID, info);
+                    if (ClientDic.ContainsKey(info.ClientID) == false)
+                        ClientDic.Add(info.ClientID, info);
                 }
                 if(NewList!=null)
                 NewList(msg.CurrentClients);
@@ -190,8 +190,8 @@ public class MessengerClient
             case ClientMsgType.Disconnect:
                 if (NewStatus != null)
                     NewStatus(msg.Info, msg.Status, ClientMsgType.Disconnect);
-                if (clientDic.ContainsKey(msg.Info.ClientID) == true)
-                    clientDic.Remove(msg.Info.ClientID);
+                if (ClientDic.ContainsKey(msg.Info.ClientID) == true)
+                    ClientDic.Remove(msg.Info.ClientID);
                 if (ClientLeaved!=null)
                 ClientLeaved(msg.Info);
                 break;
@@ -222,7 +222,7 @@ public class MessengerClient
     /// </summary>
     public void Dispose()
     {
-        listener.RunServer = false;
+        Listener.RunServer = false;
 
         foreach (var f in Program.App.Forms.Values)
         {
@@ -231,7 +231,7 @@ public class MessengerClient
 
         }
         Program.App.Forms.Clear();
-        Program.App.Client.clientDic.Clear();
+        Program.App.Client.ClientDic.Clear();
     }
 }
 
