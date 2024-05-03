@@ -24,7 +24,7 @@ public partial class FormWelcome : Form
     {
         // temporary work, 
         txtIP.Text = Program.OwnIP;
-        this.textBoxName.Text = "新用户";
+        this.textBoxName.Text = "新用户@" + txtIP.Text;
     }
 
     /// <summary>
