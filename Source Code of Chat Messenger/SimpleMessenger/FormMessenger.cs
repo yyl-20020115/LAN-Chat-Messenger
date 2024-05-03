@@ -18,6 +18,7 @@ public partial class FormMessenger : Form
         InitializeComponent();
         this.welcome = welcome;
         listClients.DisplayMember = "名称";
+        this.labelSelfIP.Text = Program.OwnIP;
 
         //Giving New Client already existing client list
         foreach (var info in Program.App.Client.ClientDic.Values)
@@ -80,7 +81,7 @@ public partial class FormMessenger : Form
             Program.App.Client=null;
             this.Hide();
             welcome.Show();
-            MessageBox.Show("Server is not Found");
+            MessageBox.Show("未找到服务器!");
             this.Dispose();
             this.Close();
         }
@@ -103,7 +104,7 @@ public partial class FormMessenger : Form
             Program.App.Client = null;
             welcome.Show();
             this.Hide();
-            MessageBox.Show("You are Disconnected by the server");
+            MessageBox.Show("您已经和服务器断开链接!");
             this.Dispose();
             this.Close();
         }
@@ -293,7 +294,7 @@ public partial class FormMessenger : Form
             richTxtNewsFeed.Visible = true;
             btnNewsFeed.Font = new Font(btnNewsFeed.Font, FontStyle.Regular);
             btnNewsFeed.BackColor = Color.White;
-            btnNewsFeed.Text = "News Feed";
+            btnNewsFeed.Text = "消息订阅";
             StatusNumber = 0;
         }
     }
@@ -374,14 +375,14 @@ public partial class FormMessenger : Form
             richTxtNewsFeed.SelectionColor = Color.Red;
             if(info.Name!=Program.App.Info.Name)
             richTxtNewsFeed.SelectedText = Environment.NewLine + info.Name+":";
-            else richTxtNewsFeed.SelectedText = Environment.NewLine + "You" + ":";
+            else richTxtNewsFeed.SelectedText = Environment.NewLine + "你" + ":";
             
             if (type == ClientMsgType.Status)
             {
                 Font font2 = new Font(richTxtNewsFeed.Font, FontStyle.Italic);
                 richTxtNewsFeed.SelectionFont = font2;
                 richTxtNewsFeed.SelectionColor = Color.DimGray;
-                richTxtNewsFeed.SelectedText = " Updated status at " + DateTime.Now.ToString("HH:mm:ss");
+                richTxtNewsFeed.SelectedText = " 状态更新于 " + DateTime.Now.ToString("HH:mm:ss");
                 Font font3 = new Font(richTxtNewsFeed.Font, FontStyle.Regular);
                 richTxtNewsFeed.SelectionFont = font3;
                 richTxtNewsFeed.SelectionColor = Color.Black;
@@ -392,7 +393,7 @@ public partial class FormMessenger : Form
                 Font font2 = new Font(richTxtNewsFeed.Font, FontStyle.Italic);
                 richTxtNewsFeed.SelectionFont = font2;
                 richTxtNewsFeed.SelectionColor = Color.DimGray;
-                richTxtNewsFeed.SelectedText = " Joined at " + DateTime.Now.ToString("HH:mm:ss");
+                richTxtNewsFeed.SelectedText = " 加入于 " + DateTime.Now.ToString("HH:mm:ss");
                 Font font3 = new Font(richTxtNewsFeed.Font, FontStyle.Regular);
                 richTxtNewsFeed.SelectionFont = font3;
                 richTxtNewsFeed.SelectionColor = Color.Black;
@@ -403,7 +404,7 @@ public partial class FormMessenger : Form
                 Font font2 = new Font(richTxtNewsFeed.Font, FontStyle.Italic);
                 richTxtNewsFeed.SelectionFont = font2;
                 richTxtNewsFeed.SelectionColor = Color.DimGray;
-                richTxtNewsFeed.SelectedText = " Leaved at " + DateTime.Now.ToString("HH:mm:ss");
+                richTxtNewsFeed.SelectedText = " 离开于 " + DateTime.Now.ToString("HH:mm:ss");
                 Font font3 = new Font(richTxtNewsFeed.Font, FontStyle.Regular);
                 richTxtNewsFeed.SelectionFont = font3;
                 richTxtNewsFeed.SelectionColor = Color.Black;
@@ -417,7 +418,7 @@ public partial class FormMessenger : Form
                 StatusNumber++;
                 btnNewsFeed.Font = new Font(btnNewsFeed.Font, FontStyle.Bold);
                 btnNewsFeed.BackColor = Color.Yellow;
-                btnNewsFeed.Text = "NewsFeed(" + StatusNumber + ")";
+                btnNewsFeed.Text = "消息订阅(" + StatusNumber + ")";
             }
         }
     }
@@ -468,10 +469,12 @@ public partial class FormMessenger : Form
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void leaveToolStripMenuItem_Click_1(object sender, EventArgs e)
+    private void LeaveToolStripMenuItem_Click_1(object sender, EventArgs e)
     {
-        ClientMessage m = new ClientMessage();
-        m.Type = (int)ClientMsgType.Disconnect;
+        var m = new ClientMessage
+        {
+            Type = (int)ClientMsgType.Disconnect
+        };
         m.Info.ClientID = Program.App.Info.ClientID;
         m.Info.Name = Program.App.Info.Name;
         m.From = Program.App.Info.ClientID;
@@ -496,7 +499,7 @@ public partial class FormMessenger : Form
    /// </summary>
    /// <param name="sender"></param>
    /// <param name="e"></param>
-    private void oNToolStripMenuItem_Click(object sender, EventArgs e)
+    private void ONToolStripMenuItem_Click(object sender, EventArgs e)
     {
         Program.App.Client.MessageSound = true;
     }

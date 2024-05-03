@@ -36,23 +36,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.pictureBoxWelcome = new System.Windows.Forms.PictureBox();
+            this.menuStripWelcome = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.leaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWelcome)).BeginInit();
+            this.menuStripWelcome.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textBoxName
             // 
             this.textBoxName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.textBoxName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxName.Location = new System.Drawing.Point(89, 278);
-            this.textBoxName.Name = "textBox1";
+            this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(278, 21);
             this.textBoxName.TabIndex = 3;
             // 
@@ -124,27 +124,27 @@
             this.label4.Text = "输入服务器IP并加入:";
             this.label4.UseCompatibleTextRendering = true;
             // 
-            // pictureBox1
+            // pictureBoxWelcome
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(34, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(333, 232);
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxWelcome.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxWelcome.Image")));
+            this.pictureBoxWelcome.Location = new System.Drawing.Point(34, 25);
+            this.pictureBoxWelcome.Name = "pictureBoxWelcome";
+            this.pictureBoxWelcome.Size = new System.Drawing.Size(333, 232);
+            this.pictureBoxWelcome.TabIndex = 13;
+            this.pictureBoxWelcome.TabStop = false;
             // 
-            // menuStrip1
+            // menuStripWelcome
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.Purple;
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStripWelcome.BackColor = System.Drawing.Color.Purple;
+            this.menuStripWelcome.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStripWelcome.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(406, 25);
-            this.menuStrip1.TabIndex = 14;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStripWelcome.Location = new System.Drawing.Point(0, 0);
+            this.menuStripWelcome.Name = "menuStripWelcome";
+            this.menuStripWelcome.Size = new System.Drawing.Size(406, 25);
+            this.menuStripWelcome.TabIndex = 14;
+            this.menuStripWelcome.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -157,7 +157,7 @@
             // leaveToolStripMenuItem
             // 
             this.leaveToolStripMenuItem.Name = "leaveToolStripMenuItem";
-            this.leaveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.leaveToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.leaveToolStripMenuItem.Text = "退出(&X)";
             this.leaveToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -173,14 +173,14 @@
             // manualToolStripMenuItem
             // 
             this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
-            this.manualToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manualToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.manualToolStripMenuItem.Text = "手册(&M)";
             this.manualToolStripMenuItem.Click += new System.EventHandler(this.ManualToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.aboutToolStripMenuItem.Text = "关于(&A)";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -190,7 +190,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Purple;
             this.ClientSize = new System.Drawing.Size(406, 462);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBoxWelcome);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
@@ -198,16 +198,16 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxName);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.menuStripWelcome);
+            this.MainMenuStrip = this.menuStripWelcome;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormWelcome";
             this.Text = "欢迎";
             this.Load += new System.EventHandler(this.FormWelcome_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWelcome)).EndInit();
+            this.menuStripWelcome.ResumeLayout(false);
+            this.menuStripWelcome.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,8 +222,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.PictureBox pictureBoxWelcome;
+        private System.Windows.Forms.MenuStrip menuStripWelcome;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem leaveToolStripMenuItem;

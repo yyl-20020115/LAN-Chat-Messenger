@@ -48,6 +48,8 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.richTxtNewsFeed = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelSelfIPPrompt = new System.Windows.Forms.Label();
+            this.labelSelfIP = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,7 +126,7 @@
             // 
             this.leaveToolStripMenuItem.Name = "leaveToolStripMenuItem";
             resources.ApplyResources(this.leaveToolStripMenuItem, "leaveToolStripMenuItem");
-            this.leaveToolStripMenuItem.Click += new System.EventHandler(this.leaveToolStripMenuItem_Click_1);
+            this.leaveToolStripMenuItem.Click += new System.EventHandler(this.LeaveToolStripMenuItem_Click_1);
             // 
             // optionsToolStripMenuItem
             // 
@@ -145,7 +147,7 @@
             // 
             this.oNToolStripMenuItem.Name = "oNToolStripMenuItem";
             resources.ApplyResources(this.oNToolStripMenuItem, "oNToolStripMenuItem");
-            this.oNToolStripMenuItem.Click += new System.EventHandler(this.oNToolStripMenuItem_Click);
+            this.oNToolStripMenuItem.Click += new System.EventHandler(this.ONToolStripMenuItem_Click);
             // 
             // oFFToolStripMenuItem
             // 
@@ -186,11 +188,23 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.label1.Name = "label1";
             // 
+            // labelSelfIPPrompt
+            // 
+            resources.ApplyResources(this.labelSelfIPPrompt, "labelSelfIPPrompt");
+            this.labelSelfIPPrompt.Name = "labelSelfIPPrompt";
+            // 
+            // labelSelfIP
+            // 
+            resources.ApplyResources(this.labelSelfIP, "labelSelfIP");
+            this.labelSelfIP.Name = "labelSelfIP";
+            // 
             // FormMessenger
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Purple;
+            this.Controls.Add(this.labelSelfIP);
+            this.Controls.Add(this.labelSelfIPPrompt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTxtNewsFeed);
             this.Controls.Add(this.btnSendStatus);
@@ -233,8 +247,7 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-
-
-
+        private System.Windows.Forms.Label labelSelfIPPrompt;
+        private System.Windows.Forms.Label labelSelfIP;
     }
 }

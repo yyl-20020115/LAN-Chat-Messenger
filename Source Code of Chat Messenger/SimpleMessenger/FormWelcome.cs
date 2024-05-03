@@ -24,6 +24,7 @@ public partial class FormWelcome : Form
     {
         // temporary work, 
         txtIP.Text = Program.OwnIP;
+        this.textBoxName.Text = "新用户";
     }
 
     /// <summary>
@@ -83,8 +84,10 @@ public partial class FormWelcome : Form
             Program.App.Client.ConnectionStatus += new SERVER_CONNECTION_DELIGATE(Client_ConnectionStatus);
             Program.App.Client.Start(txtIP.Text, Program.App.Info.Name);
         }
-        else 
-            MessageBox.Show("You have to enter your name and server IP and then Join!!!");
+        else
+        {
+            MessageBox.Show("请首先输入你的名字和服务器IP，然后再点击加入!");
+        }
     }
 
 
@@ -114,7 +117,7 @@ public partial class FormWelcome : Form
         else
         {
             // Client is not Connected with Server, So showing this msg...
-            MessageBox.Show("Ooops!!! Connection failed with  " + serverIP);
+            MessageBox.Show("链接到 IP:" + serverIP +"失败!");
 
             //Closing All thread that I started For connecting.
             if (Program.App.IsServer)
@@ -122,7 +125,7 @@ public partial class FormWelcome : Form
                 Program.App.Server.Dispose();
                 Program.App.Server = null;
             }
-            Program.App.Client.Dispose();
+            Program.App.Client?.Dispose();
             Program.App.Client = null;
         }
     }
